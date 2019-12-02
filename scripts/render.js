@@ -1,11 +1,21 @@
-var canvas, egg, eggImage;
+var canvas;
+var buttonFeed, buttonFeedImage,
+    buttonTrain, buttonTrainImage,
+    buttonClean, buttonCleanImage,
+    egg, eggImage;
 
 canvas = document.getElementById("cnv");
-canvas.width = window.screen.width * window.devicePixelRatio;
-canvas.height = window.screen.height * window.devicePixelRatio;
+canvas.width = window.screen.width;
+canvas.height = window.screen.height;
 
+//Assign asset
 eggImage = new Image();
 eggImage.src = "images/egg.png";
+buttonFeedImage = new Image();
+buttonFeedImage.src = "images/button.png";
+buttonTrainImage = new Image();
+buttonTrainImage.src = "images/button.png";
+
 
 function sprite(options) {
     var that = {},
@@ -21,6 +31,10 @@ function sprite(options) {
     that.x = options.x;
     that.y = options.y;
     that.scaleRatio = 1;
+    that.offsetY = options.h/2;
+    that.offsetX = options.w/2;
+    that.scaleX = options.scaleX;
+    that.scaleY = options.scaleY;
 
     //var update berisi function untuk
     //menggerakkan frame
@@ -48,10 +62,10 @@ function sprite(options) {
             0,
             that.w / numberOfFrame,
             that.h,
-            that.x,
-            that.y,
-            that.w / numberOfFrame,
-            that.h
+            that.x - (that.offsetX * that.scaleX),
+            that.y - (that.offsetY * that.scaleY),
+            (that.w / numberOfFrame) * that.scaleX,
+            that.h * that.scaleY,
         );
 
     };
@@ -63,7 +77,7 @@ function sprite(options) {
     return that;
 }
 
-//knight sprite
+//egg sprite
 egg = sprite({
     context: canvas.getContext("2d"),
     w: 360,
@@ -72,5 +86,33 @@ egg = sprite({
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: canvas.width/2,
-    y: canvas.height/2
+    y: (3/5) * canvas.height,
+    scaleX : 1,
+    scaleY : 1,
+});
+
+buttonFeed = sprite( {
+    context: canvas.getContext("2d"),
+    w: 27,
+    h: 20,
+    img: buttonFeedImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: (canvas.width/4) - 50,
+    y: (18/20) * canvas.height,
+    scaleX : 5,
+    scaleY: 5,
+});
+
+buttonTrain = sprite( {
+    context: canvas.getContext("2d"),
+    w: 27,
+    h: 20,
+    img: buttonFeedImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: (canvas.width/3) + 50,
+    y: (18/20) * canvas.height,
+    scaleX : 5,
+    scaleY: 5,
 });
