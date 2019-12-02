@@ -2,19 +2,27 @@ var canvas;
 var buttonFeed, buttonFeedImage,
     buttonTrain, buttonTrainImage,
     buttonClean, buttonCleanImage,
-    egg, eggImage;
+    buttonExtra, buttonExtraImage,
+    brone, broneImage,
+    addition = [], additionImage;
 
 canvas = document.getElementById("cnv");
 canvas.width = window.screen.width;
 canvas.height = window.screen.height;
 
 //Assign asset
-eggImage = new Image();
-eggImage.src = "images/egg.png";
+broneImage = new Image();
+broneImage.src = "images/egg.png";
 buttonFeedImage = new Image();
 buttonFeedImage.src = "images/button.png";
 buttonTrainImage = new Image();
 buttonTrainImage.src = "images/button.png";
+buttonCleanImage = new Image();
+buttonCleanImage.src = "images/button.png";
+buttonExtraImage = new Image();
+buttonExtraImage.src = "images/button.png";
+additionImage = new Image();
+additionImage.src = "images/plus.png";
 
 
 function sprite(options) {
@@ -30,7 +38,7 @@ function sprite(options) {
     that.img = options.img;
     that.x = options.x;
     that.y = options.y;
-    that.scaleRatio = 1;
+    that.scaleRatio = options.scaleX;
     that.offsetY = options.h/2;
     that.offsetX = options.w/2;
     that.scaleX = options.scaleX;
@@ -55,7 +63,6 @@ function sprite(options) {
     //var render berisi function untuk
     //merender obyek
     that.render = function () {
-
         that.context.drawImage(
             that.img,
             frameIndex * that.w / numberOfFrame,
@@ -67,22 +74,30 @@ function sprite(options) {
             (that.w / numberOfFrame) * that.scaleX,
             that.h * that.scaleY,
         );
-
     };
+
+    that.change = function (frame) {
+        frameIndex = frame;
+        that.render();
+    }
 
     that.getFrameWidth = function () {
         return that.w / numberOfFrame;
     }
 
+    that.getFrameHeigth = function () {
+        return that.h;
+    }
+
     return that;
 }
 
-//egg sprite
-egg = sprite({
+//brone sprite
+brone = sprite({
     context: canvas.getContext("2d"),
     w: 360,
     h: 380,
-    img: eggImage,
+    img: broneImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: canvas.width/2,
@@ -93,12 +108,12 @@ egg = sprite({
 
 buttonFeed = sprite( {
     context: canvas.getContext("2d"),
-    w: 27,
-    h: 20,
+    w: 26,
+    h: 17,
     img: buttonFeedImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
-    x: (canvas.width/4) - 50,
+    x: (canvas.width * (12/24)) - (canvas.width * (7.5/24)),
     y: (18/20) * canvas.height,
     scaleX : 5,
     scaleY: 5,
@@ -106,13 +121,57 @@ buttonFeed = sprite( {
 
 buttonTrain = sprite( {
     context: canvas.getContext("2d"),
-    w: 27,
-    h: 20,
-    img: buttonFeedImage,
+    w: 26,
+    h: 17,
+    img: buttonTrainImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
-    x: (canvas.width/3) + 50,
+    x: (canvas.width * (12/24)) - (canvas.width * (2.5/24)),
     y: (18/20) * canvas.height,
     scaleX : 5,
     scaleY: 5,
 });
+
+buttonClean = sprite( {
+    context: canvas.getContext("2d"),
+    w: 26,
+    h: 17,
+    img: buttonCleanImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: (canvas.width * (12/24)) + (canvas.width * (2.5/24)),
+    y: (18/20) * canvas.height,
+    scaleX : 5,
+    scaleY: 5,
+});
+
+buttonExtra = sprite( {
+    context: canvas.getContext("2d"),
+    w: 26,
+    h: 17,
+    img: buttonExtraImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: (canvas.width * (12/24)) + (canvas.width * (7.5/24)),
+    y: (18/20) * canvas.height,
+    scaleX : 5,
+    scaleY: 5,
+});
+
+
+
+function createAddition(index, size){
+    //create sprite
+    addition[index] = sprite({
+        context: canvas.getContext("2d"),
+        w: 256,
+        h: 256,
+        img: additionImage,
+        numberOfFrame: 1,
+        tickPerFrame: 1,
+        x: canvas.width/2 + 180,
+        y: ((3/5) * canvas.height) - 190,
+        scaleX : size,
+        scaleY : size,
+    });
+}
