@@ -82,7 +82,20 @@
 
     }
 
+    function renderImageStatus() {
+        if(statusBrone.getStamina() < 5) {
+            tiredStatus.render();
+        }
 
+        if(statusBrone.getEat() < 5) {
+            hungerStatus.render();
+        }
+
+        if(statusBrone.getClean() < 5) {
+            dirtyStatus.render();
+        }
+
+    }
 
     // Input Detect //
     function tap(e) {
