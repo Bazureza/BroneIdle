@@ -1,2 +1,0 @@
-# BroneIdle
-Brone Idle Game
