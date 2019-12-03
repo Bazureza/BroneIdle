@@ -4,8 +4,6 @@
     var modifierTime = 100;
 
     function gameLoop() {
-        requestAnimationFrame(gameLoop);
-
         canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
 
         //brone.update();
@@ -19,6 +17,7 @@
         decrementStatus();
 
         save();
+        requestAnimationFrame(gameLoop);
     }
 
     function Initialize(){
@@ -220,7 +219,7 @@
         //check collision tap with button
         if (distanceButton.x <= distanceMax.x && distanceButton.y <= distanceMax.y) {
             var time = (TimeNow() - statusBrone.timeStampButtonBath)/1000;
-            if (time >= (10)/modifierTime) {
+            if (time >= (5*60)/modifierTime) {
                 statusBrone.timeStampButtonBath = TimeNow();
                 spawnAdditionSprite();
                 statusBrone.bath(10);
