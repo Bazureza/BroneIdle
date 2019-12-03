@@ -11,6 +11,7 @@
 
         RenderButton();
         RenderGUI();
+        renderImageStatus();
         movementObject();
         barUpdate();
 
@@ -83,15 +84,15 @@
     }
 
     function renderImageStatus() {
-        if(statusBrone.getStamina() < 5) {
+        if(statusBrone.getStamina() < 50) {
             tiredStatus.render();
         }
 
-        if(statusBrone.getEat() < 5) {
+        if(statusBrone.getEat() < 50) {
             hungerStatus.render();
         }
 
-        if(statusBrone.getClean() < 5) {
+        if(statusBrone.getClean() < 50) {
             dirtyStatus.render();
         }
 
