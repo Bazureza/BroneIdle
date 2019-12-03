@@ -57,27 +57,17 @@
     }
 
     function RenderGUI(){
-        var context = canvas.getContext("2d");
 
         //stamina
-        context.font = "bold 30px Consolas";
-        context.textAlign = "start";
-        context.fillStyle = "blue";
-        context.fillText("Stamina ", canvas.width * 4/40, canvas.height * 4/40);
+        trainIcon.render();
         barStamina.render();
 
         //eat
-        context.font = "bold 30px Consolas";
-        context.textAlign = "start";
-        context.fillStyle = "green";
-        context.fillText("Hunger " , canvas.width * 4/40, canvas.height * 6/40);
+        feedIcon.render();
         barEat.render();
 
         //clean
-        context.font = "bold 30px Consolas";
-        context.textAlign = "start";
-        context.fillStyle = "white";
-        context.fillText("Clean ", canvas.width * 4/40, canvas.height * 8/40);
+        bathIcon.render();
         barClean.render();
 
     }
@@ -144,11 +134,12 @@
 
         //check collision tap with button
         if (distanceButton.x <= distanceMax.x && distanceButton.y <= distanceMax.y) {
-
+            PlayClickSFX();
             var time = (TimeNow() - statusBrone.timeStampButtonHunger)/1000;
             if (time >= (5 * 60)/modifierTime) {
                 statusBrone.eat(10);
                 spawnAdditionSprite();
+                statusBrone.timeStampHunger = TimeNow();
                 statusBrone.timeStampButtonHunger = TimeNow();
             }
             localStorage.removeItem("data");
@@ -180,6 +171,7 @@
 
         //check collision tap with button
         if (distanceButton.x <= distanceMax.x && distanceButton.y <= distanceMax.y) {
+            PlayClickSFX();
             var time = (TimeNow() - statusBrone.timeStampButtonTrain)/1000;
             if (time >= (30 * 60)/modifierTime) {
                 var status = statusBrone.train();
@@ -218,8 +210,11 @@
 
         //check collision tap with button
         if (distanceButton.x <= distanceMax.x && distanceButton.y <= distanceMax.y) {
+            PlayClickSFX();
             var time = (TimeNow() - statusBrone.timeStampButtonBath)/1000;
+            console.log(time + " "+(5*60)/modifierTime);
             if (time >= (5*60)/modifierTime) {
+                statusBrone.timeStampBath = TimeNow();
                 statusBrone.timeStampButtonBath = TimeNow();
                 spawnAdditionSprite();
                 statusBrone.bath(10);
@@ -252,6 +247,7 @@
 
         //check collision tap with button
         if (distanceButton.x <= distanceMax.x && distanceButton.y <= distanceMax.y) {
+            PlayClickSFX();
             var time = (TimeNow() - statusBrone.timeStampButtonSleep)/1000;
             if (time >= (3 * 60 * 60)/modifierTime) {
                 statusBrone.timeStampButtonSleep = TimeNow();
@@ -265,35 +261,34 @@
         var dist = {};
         dist.x = Math.abs(p1.x - p2.x);
         dist.y = Math.abs(p1.y - p2.y);
-
         return dist;
     }
 
     function renderButtonTime(){
-        var time = (5 * 60)/modifierTime - (TimeNow() - statusBrone.timeStampButtonHunger)/1000;
+        var time = ((5 * 60)/modifierTime) - ((TimeNow() - statusBrone.timeStampButtonHunger)/1000);
         if (time > 0){
-            renderTime(convertToTime(time*1000) , buttonFeed.x - 25 , buttonFeed.y - 55);
+            renderTime(convertToTime(time*1000) , buttonFeed.x , buttonFeed.y - 55);
         }
 
-        time = (30 * 60)/modifierTime - (TimeNow() - statusBrone.timeStampButtonTrain)/1000;
+        time = ((30 * 60)/modifierTime) - ((TimeNow() - statusBrone.timeStampButtonTrain)/1000);
         if (time > 0){
-            renderTime(convertToTime(time*1000) , buttonTrain.x - 25 , buttonTrain.y - 55);
+            renderTime(convertToTime(time*1000) , buttonTrain.x  , buttonTrain.y - 55);
         }
 
-        time = (10)/modifierTime - (TimeNow() - statusBrone.timeStampButtonBath)/1000;
+        time = ((5*60)/modifierTime) - ((TimeNow() - statusBrone.timeStampButtonBath)/1000);
         if (time > 0){
-            renderTime(convertToTime(time*1000) , buttonClean.x - 25 , buttonClean.y - 55);
+            renderTime(convertToTime(time*1000) , buttonClean.x , buttonClean.y - 55);
         }
 
-        time = (3 * 60 * 60)/modifierTime - (TimeNow() - statusBrone.timeStampButtonSleep)/1000;
+        time = ((3 * 60 * 60)/modifierTime) - ((TimeNow() - statusBrone.timeStampButtonSleep)/1000);
         if (time > 0){
-            renderTime(convertToTime(time*1000) , buttonSleep.x - 25 , buttonSleep.y - 55);
+            renderTime(convertToTime(time*1000) , buttonSleep.x , buttonSleep.y - 55);
         }
-
     }
 
     Initialize();
     gameLoop();
+    PlayBGM();
 
     canvas.addEventListener("mousedown", tap);
     canvas.addEventListener("ontouchstart", tap);

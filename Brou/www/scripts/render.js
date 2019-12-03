@@ -3,6 +3,9 @@ var buttonFeed, buttonFeedImage,
     buttonTrain, buttonTrainImage,
     buttonClean, buttonCleanImage,
     buttonSleep, buttonSleepImage,
+    feedIcon, feedIconImage,
+    trainIcon, trainIconImage,
+    bathIcon, bathIconImage,
     brone, broneImage,
     addition = [], additionImage, additionOpacity = [],
     barEat, barStamina, barClean, barExtra, barImage;
@@ -15,18 +18,23 @@ canvas.height = window.screen.height;
 broneImage = new Image();
 broneImage.src = "images/brone.png";
 buttonFeedImage = new Image();
-buttonFeedImage.src = "images/button.png";
+buttonFeedImage.src = "images/buttonFeed.png";
 buttonTrainImage = new Image();
-buttonTrainImage.src = "images/button.png";
+buttonTrainImage.src = "images/buttonTrain.png";
 buttonCleanImage = new Image();
-buttonCleanImage.src = "images/button.png";
+buttonCleanImage.src = "images/buttonBath.png";
 buttonSleepImage = new Image();
-buttonSleepImage.src = "images/button.png";
+buttonSleepImage.src = "images/buttonSleep.png";
 additionImage = new Image();
 additionImage.src = "images/plus.png";
 barImage = new Image();
 barImage.src = "images/bar.png";
-
+feedIconImage = new Image();
+feedIconImage.src = "images/hunger.png";
+trainIconImage = new Image();
+trainIconImage.src = "images/train.png";
+bathIconImage = new Image();
+bathIconImage.src = "images/bath.png";
 
 function sprite(options) {
     var that = {},
@@ -119,54 +127,54 @@ brone = sprite({
 
 buttonFeed = sprite( {
     context: canvas.getContext("2d"),
-    w: 26,
-    h: 17,
+    w: 512,
+    h: 256,
     img: buttonFeedImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) - (canvas.width * (7.5/24)),
     y: (18/20) * canvas.height,
-    scaleX : 5,
-    scaleY: 5,
+    scaleX : 0.3,
+    scaleY: 0.3,
 });
 
 buttonTrain = sprite( {
     context: canvas.getContext("2d"),
-    w: 26,
-    h: 17,
+    w: 512,
+    h: 256,
     img: buttonTrainImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) - (canvas.width * (2.5/24)),
     y: (18/20) * canvas.height,
-    scaleX : 5,
-    scaleY: 5,
+    scaleX : 0.3,
+    scaleY: 0.3,
 });
 
 buttonClean = sprite( {
     context: canvas.getContext("2d"),
-    w: 26,
-    h: 17,
+    w: 512,
+    h: 256,
     img: buttonCleanImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) + (canvas.width * (2.5/24)),
     y: (18/20) * canvas.height,
-    scaleX : 5,
-    scaleY: 5,
+    scaleX : 0.3,
+    scaleY: 0.3,
 });
 
 buttonSleep = sprite( {
     context: canvas.getContext("2d"),
-    w: 26,
-    h: 17,
+    w: 512,
+    h: 256,
     img: buttonSleepImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) + (canvas.width * (7.5/24)),
     y: (18/20) * canvas.height,
-    scaleX : 5,
-    scaleY: 5,
+    scaleX : 0.3,
+    scaleY: 0.3,
 });
 
 barStamina = sprite({
@@ -176,7 +184,7 @@ barStamina = sprite({
         img: barImage,
         numberOfFrame: 1,
         tickPerFrame: 1,
-        x: canvas.width * 18/40,
+        x: canvas.width * 20/40,
         y: canvas.height * 4/40 + 20,
         scaleX : 0.2,
         scaleY: 0.2,
@@ -189,7 +197,7 @@ barEat = sprite({
     img: barImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
-    x: canvas.width * 18/40,
+    x: canvas.width * 20/40,
     y: canvas.height * 6/40 + 20,
     scaleX : 0.2,
     scaleY: 0.2,
@@ -202,12 +210,50 @@ barClean = sprite({
     img: barImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
-    x: canvas.width * 18/40,
+    x: canvas.width * 20/40,
     y: canvas.height * 8/40 + 20,
     scaleX : 0.2,
     scaleY: 0.2,
 });
 
+trainIcon = sprite({
+    context: canvas.getContext("2d"),
+    w: 256,
+    h: 256,
+    img: trainIconImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: canvas.width * 4/40,
+    y: canvas.height * 4/40 + 20,
+    scaleX : 0.2,
+    scaleY: 0.2,
+});
+
+feedIcon = sprite({
+    context: canvas.getContext("2d"),
+    w: 256,
+    h: 256,
+    img: feedIconImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: canvas.width * 4/40,
+    y: canvas.height * 6/40 + 20,
+    scaleX : 0.2,
+    scaleY: 0.2,
+});
+
+bathIcon = sprite({
+    context: canvas.getContext("2d"),
+    w: 256,
+    h: 256,
+    img: bathIconImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: canvas.width * 4/40,
+    y: canvas.height * 8/40 + 20,
+    scaleX : 0.2,
+    scaleY: 0.2,
+});
 
 
 function createAddition(index, size){
@@ -231,7 +277,7 @@ function renderTime(time, x, y){
     var context = canvas.getContext("2d");
 
     context.font = "bold 30px Consolas";
-    context.textAlign = "start";
+    context.textAlign = "center";
     context.fillStyle = "white";
     context.fillText(time, x, y);
 }

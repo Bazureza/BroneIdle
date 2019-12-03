@@ -6,10 +6,13 @@ function growUp(){
     if (statusBrone.broneAge == 3) return;
 
     if (statusBrone.getAgi() >= 5 && statusBrone.getStr() >= 5 && statusBrone.broneAge == 0) {
+        PlayGrowSFX();
         statusBrone.broneAge = 1;
     } else if (statusBrone.getAgi() >= 20 && statusBrone.getStr() >= 20 && statusBrone.broneAge == 1) {
+        PlayGrowSFX();
         statusBrone.broneAge = 2;
     } else if (statusBrone.getAgi() >= 50 && statusBrone.getStr() >= 50 && statusBrone.broneAge == 2) {
+        PlayGrowSFX();
         statusBrone.broneAge = 3;
     }
     brone.changeFrame(statusBrone.broneAge, 0);
