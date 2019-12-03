@@ -16,6 +16,8 @@ var statusBrone = new function() {
         clean,
         eat,
         educate;
+    this.broneAge = 0;
+    this.requirementGrow = 0;
 
     this.getStamina = function() {
         return stamina;

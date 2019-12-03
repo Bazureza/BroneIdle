@@ -7,19 +7,29 @@
 
         canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
 
-        brone.update();
+        //brone.update();
         brone.render();
 
         RenderButton();
         RenderGUI();
         movementObject();
+        barUpdate();
     }
 
     function movementObject(){
         for (var i = 0 ; i<addition.length ; i++) {
             addition[i].update();
             addition[i].y -= velocity;
-            addition[i].render();
+            if (additionOpacity[i] <= 0) {
+                additionOpacity[i] = 0;
+                addition[i].renderWithOpacity(additionOpacity[i]);
+                destroyAdditionSprite(addition[i]);
+            } else {
+                additionOpacity[i] -= 0.01;
+                if (additionOpacity[i] >= 0) {
+                    addition[i].renderWithOpacity(additionOpacity[i]);
+                }
+            }
         }
     }
 
@@ -45,25 +55,29 @@
         context.font = "bold 30px Consolas";
         context.textAlign = "start";
         context.fillStyle = "blue";
-        context.fillText("Stamina : " + statusBrone.getStamina(), canvas.width/20, canvas.height/20);
+        context.fillText("Stamina ", canvas.width * 4/40, canvas.height * 4/40);
+        barStamina.render();
 
         //eat
         context.font = "bold 30px Consolas";
         context.textAlign = "start";
         context.fillStyle = "green";
-        context.fillText("Eat     : " + statusBrone.getEat(), canvas.width/20, canvas.height/20 + canvas.height/40);
+        context.fillText("Eat " , canvas.width * 4/40, canvas.height * 6/40);
+        barEat.render();
 
         //clean
         context.font = "bold 30px Consolas";
         context.textAlign = "start";
         context.fillStyle = "white";
-        context.fillText("Clean   : " + statusBrone.getClean(), canvas.width/20, canvas.height/20 + (2*canvas.height/40));
+        context.fillText("Clean ", canvas.width * 4/40, canvas.height * 8/40);
+        barClean.render();
 
         //educate
         context.font = "bold 30px Consolas";
         context.textAlign = "start";
         context.fillStyle = "yellow";
-        context.fillText("Educate : " + statusBrone.getEducate(), canvas.width/20, canvas.height/20 + (3*canvas.height/40));
+        context.fillText("Educate ", canvas.width * 4/40, canvas.height * 10/40);
+        barExtra.render();
 
     }
 
@@ -131,6 +145,8 @@
             statusBrone.addEat(5);
 
             spawnAdditionSprite();
+            checkParamterStatus();
+            console.log(statusBrone.broneAge);
         }
     }
 
@@ -217,9 +233,26 @@
             offset = (Math.random() < 0.5 ? -1 : 1) * (Math.random() * distanceSpawn);
             console.log(offset);
 
-            addition[additionIndex].x = canvas.width / 2 + 180 - distanceSpawn + offset;
-            addition[additionIndex].y = ((3 / 5) * canvas.height) - 190 - distanceSpawn + offset;
+            addition[additionIndex].x = canvas.width / 2 + 128 - distanceSpawn + offset;
+            addition[additionIndex].y = ((3 / 5) * canvas.height) - 192  + offset + setOffsetYAdditionSprite();
         }
+    }
+
+    function setOffsetYAdditionSprite(){
+        if (statusBrone.broneAge == 0) return 192 * 3/4;
+        else if (statusBrone.broneAge == 1) return 192 * 2/4;
+        else if (statusBrone.broneAge == 2) return (192 * 1/4) ;
+        else return -192 * 1/4;
+    }
+
+    function destroyAdditionSprite(index) {
+        addition[index] = null;
+        additionOpacity[index] = null;
+
+        //array-nya dihilangkan satu
+        //kemudian masuk render lagi, maka akan hilang
+        addition.splice(index, 1);
+        additionOpacity.splice(index, 1);
     }
 
 

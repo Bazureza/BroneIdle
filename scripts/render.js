@@ -4,7 +4,8 @@ var buttonFeed, buttonFeedImage,
     buttonClean, buttonCleanImage,
     buttonExtra, buttonExtraImage,
     brone, broneImage,
-    addition = [], additionImage;
+    addition = [], additionImage, additionOpacity = [],
+    barEat, barStamina, barClean, barExtra, barImage;
 
 canvas = document.getElementById("cnv");
 canvas.width = window.screen.width;
@@ -12,7 +13,7 @@ canvas.height = window.screen.height;
 
 //Assign asset
 broneImage = new Image();
-broneImage.src = "images/egg.png";
+broneImage.src = "images/brone.png";
 buttonFeedImage = new Image();
 buttonFeedImage.src = "images/button.png";
 buttonTrainImage = new Image();
@@ -23,11 +24,14 @@ buttonExtraImage = new Image();
 buttonExtraImage.src = "images/button.png";
 additionImage = new Image();
 additionImage.src = "images/plus.png";
+barImage = new Image();
+barImage.src = "images/bar.png";
 
 
 function sprite(options) {
     var that = {},
-        frameIndex = 0,
+        frameIndexX = 0,
+        frameIndexY = 0,
         tickCount = 0,
         tickPerFrame = options.tickPerFrame || 0,
         numberOfFrame = options.numberOfFrame || 1;
@@ -52,10 +56,10 @@ function sprite(options) {
         if (tickCount > tickPerFrame) {
             tickCount = 0;
 
-            if (frameIndex < numberOfFrame - 1) {
-                frameIndex += 1;
+            if (frameIndexX < numberOfFrame - 1) {
+                frameIndexX += 1;
             } else {
-                frameIndex = 0;
+                frameIndexX = 0;
             }
         }
     };
@@ -65,8 +69,8 @@ function sprite(options) {
     that.render = function () {
         that.context.drawImage(
             that.img,
-            frameIndex * that.w / numberOfFrame,
-            0,
+            frameIndexX * that.w / numberOfFrame,
+            frameIndexY * that.h / numberOfFrame,
             that.w / numberOfFrame,
             that.h,
             that.x - (that.offsetX * that.scaleX),
@@ -76,8 +80,15 @@ function sprite(options) {
         );
     };
 
-    that.change = function (frame) {
-        frameIndex = frame;
+    that.renderWithOpacity = function(opacity){
+        that.context.globalAlpha = opacity;
+        that.render();
+        that.context.globalAlpha = 1;
+    }
+
+    that.changeFrame = function (frameX,frameY) {
+        frameIndexX = frameX;
+        frameIndexY = frameY;
         that.render();
     }
 
@@ -95,8 +106,8 @@ function sprite(options) {
 //brone sprite
 brone = sprite({
     context: canvas.getContext("2d"),
-    w: 360,
-    h: 380,
+    w: 256,
+    h: 384,
     img: broneImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
@@ -158,6 +169,57 @@ buttonExtra = sprite( {
     scaleY: 5,
 });
 
+barStamina = sprite({
+    context: canvas.getContext("2d"),
+        w: 2560,
+        h: 128,
+        img: barImage,
+        numberOfFrame: 1,
+        tickPerFrame: 1,
+        x: canvas.width * 18/40,
+        y: canvas.height * 4/40 + 20,
+        scaleX : 0.2,
+        scaleY: 0.2,
+});
+
+barEat = sprite({
+    context: canvas.getContext("2d"),
+    w: 2560,
+    h: 128,
+    img: barImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: canvas.width * 18/40,
+    y: canvas.height * 6/40 + 20,
+    scaleX : 0.2,
+    scaleY: 0.2,
+});
+
+barClean = sprite({
+    context: canvas.getContext("2d"),
+    w: 2560,
+    h: 128,
+    img: barImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: canvas.width * 18/40,
+    y: canvas.height * 8/40 + 20,
+    scaleX : 0.2,
+    scaleY: 0.2,
+});
+
+barExtra = sprite({
+    context: canvas.getContext("2d"),
+    w: 2560,
+    h: 128,
+    img: barImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: canvas.width * 18/40,
+    y: canvas.height * 10/40 + 20,
+    scaleX : 0.2,
+    scaleY: 0.2,
+});
 
 
 function createAddition(index, size){
@@ -174,4 +236,5 @@ function createAddition(index, size){
         scaleX : size,
         scaleY : size,
     });
+    additionOpacity[index] = 1;
 }
