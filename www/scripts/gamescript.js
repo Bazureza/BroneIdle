@@ -20,7 +20,8 @@
     }
 
     function Initialize(){
-        statusBrone.Initialize();
+        var JSONData = JSON.parse(load());
+        statusBrone.Initialize(JSONData);
     }
 
     function movementObject(){
@@ -41,6 +42,8 @@
     }
 
     function RenderButton(){
+        renderButtonTime();
+
         buttonFeed.update();
         buttonFeed.render();
         buttonTrain.update();
@@ -263,14 +266,12 @@
         return dist;
     }
 
-    function destroyAdditionSprite(index) {
-        addition[index] = null;
-        additionOpacity[index] = null;
+    function renderButtonTime(){
+        var time = (30 * 60)/modifierTime - (TimeNow() - statusBrone.timeStampButtonTrain)/1000;
 
-        //array-nya dihilangkan satu
-        //kemudian masuk render lagi, maka akan hilang
-        addition.splice(index, 1);
-        additionOpacity.splice(index, 1);
+        if (time > 0){
+            renderTime(convertToTime(time*1000) , buttonTrain.x , buttonTrain.y - 40);
+        }
     }
 
 

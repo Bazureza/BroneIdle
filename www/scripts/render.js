@@ -226,3 +226,14 @@ function createAddition(index, size){
     });
     additionOpacity[index] = 1;
 }
+
+function renderTime(time, x, y){
+    var context = canvas.getContext("2d");
+
+    console.log(time);
+    //stamina
+    context.font = "bold 30px Consolas";
+    context.textAlign = "start";
+    context.fillStyle = "white";
+    context.fillText(time, x, y);
+}

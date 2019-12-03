@@ -1,14 +1,29 @@
 var statusBrone = new function() {
 
-    this.Initialize = function () {
-        //random between 70 ~ 90
-        stamina = Math.ceil(Math.random() * 20) + 50;
-        clean = Math.ceil(Math.random() * 20) + 50;
-        hunger = Math.ceil(Math.random() * 20) + 50;
-        agi = 0;
-        str = 0;
-        this.timeStampHunger = Date.now();
-        this.timeStampBath = Date.now();
+    this.Initialize = function (value) {
+        if (value == null) {
+            //random between 70 ~ 90
+            stamina = Math.ceil(Math.random() * 20) + 50;
+            clean = Math.ceil(Math.random() * 20) + 50;
+            hunger = Math.ceil(Math.random() * 20) + 50;
+            agi = 0;
+            str = 0;
+            this.timeStampHunger = Date.now();
+            this.timeStampBath = Date.now();
+            save();
+        } else {
+            stamina = value[0];
+            clean = value[1];
+            hunger = value[2];
+            agi = value[3];
+            str = value[4];
+            this.timeStampHunger = value[5];
+            this.timeStampBath  = value[6];
+            this.timeStampButtonHunger = value[7];
+            this.timeStampButtonBath = value[8];
+            this.timeStampButtonSleep = value[9];
+            this.timeStampButtonTrain = value[10];
+        }
     }
 
     const maxStamina = 100,
@@ -32,6 +47,22 @@ var statusBrone = new function() {
     this.modifierBath = 5;
 
     this.broneAge = 0;
+
+    this.getData = function () {
+        var dataJSON = [];
+        dataJSON.push(stamina);
+        dataJSON.push(clean);
+        dataJSON.push(hunger);
+        dataJSON.push(agi);
+        dataJSON.push(str);
+        dataJSON.push(this.timeStampHunger);
+        dataJSON.push(this.timeStampBath);
+        dataJSON.push(this.timeStampButtonHunger);
+        dataJSON.push(this.timeStampButtonBath);
+        dataJSON.push(this.timeStampButtonSleep);
+        dataJSON.push(this.timeStampButtonTrain);
+        return dataJSON;
+    }
 
     this.getStamina = function() {
         return stamina;

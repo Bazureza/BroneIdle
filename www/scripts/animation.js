@@ -26,3 +26,13 @@ function setOffsetYAdditionSprite(){
 function spawnGreetings(){
 
 }
+
+function destroyAdditionSprite(index) {
+    addition[index] = null;
+    additionOpacity[index] = null;
+
+    //array-nya dihilangkan satu
+    //kemudian masuk render lagi, maka akan hilang
+    addition.splice(index, 1);
+    additionOpacity.splice(index, 1);
+}
