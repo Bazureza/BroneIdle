@@ -35,17 +35,19 @@ function TimeNow(){
 
 function decrementEat(){
     var time = (TimeNow() - statusBrone.timeStampHunger)/1000;
+    var multiply = Math.floor(time/(10*60));
     if ( time >= 10*60) {
         statusBrone.timeStampHunger = TimeNow();
-        statusBrone.eat(-statusBrone.modifierHunger * (2**statusBrone.broneAge));
+        statusBrone.eat( (-statusBrone.modifierHunger * (2**statusBrone.broneAge)) * multiply );
     }
 }
 
 function decreamentBath(){
     var time = (TimeNow() - statusBrone.timeStampBath)/1000;
-    if ( time >= 10*60) {
+    var multiply = Math.floor(time/(3*60));
+    if ( time >= 3*60) {
         statusBrone.timeStampBath = TimeNow();
-        statusBrone.bath(-statusBrone.modifierBath);
+        statusBrone.bath(-statusBrone.modifierBath * multiply);
     }
 }
 
