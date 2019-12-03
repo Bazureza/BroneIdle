@@ -12,7 +12,7 @@ function spawnAdditionSprite(){
         console.log(offset);
 
         addition[additionIndex].x = canvas.width / 2 + 128 - distanceSpawn + offset;
-        addition[additionIndex].y = ((3 / 5) * canvas.height) - 192  + offset + setOffsetYAdditionSprite();
+        addition[additionIndex].y = (1/2 * canvas.height) - 192  + offset + setOffsetYAdditionSprite();
     }
 }
 

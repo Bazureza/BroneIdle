@@ -112,7 +112,7 @@ brone = sprite({
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: canvas.width/2,
-    y: (3/5) * canvas.height,
+    y: (2/4) * canvas.height,
     scaleX : 1,
     scaleY : 1,
 });
@@ -230,8 +230,6 @@ function createAddition(index, size){
 function renderTime(time, x, y){
     var context = canvas.getContext("2d");
 
-    console.log(time);
-    //stamina
     context.font = "bold 30px Consolas";
     context.textAlign = "start";
     context.fillStyle = "white";

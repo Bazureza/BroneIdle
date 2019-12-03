@@ -1,9 +1,9 @@
 function save(){
-    localStorage.setItem("data", getData());
+    localStorage.setItem("data-brou", getData());
 }
 
 function load(){
-    return localStorage.getItem("data");
+    return localStorage.getItem("data-brou");
 }
 
 function getData(){
