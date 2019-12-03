@@ -17,11 +17,14 @@
         barUpdate();
 
         decrementStatus();
+
+        save();
     }
 
     function Initialize(){
         var JSONData = JSON.parse(load());
         statusBrone.Initialize(JSONData);
+        brone.changeFrame(statusBrone.broneAge, 0);
     }
 
     function movementObject(){
@@ -149,6 +152,7 @@
                 spawnAdditionSprite();
                 statusBrone.timeStampButtonHunger = TimeNow();
             }
+            localStorage.removeItem("data");
         }
     }
 
@@ -267,16 +271,30 @@
     }
 
     function renderButtonTime(){
-        var time = (30 * 60)/modifierTime - (TimeNow() - statusBrone.timeStampButtonTrain)/1000;
-
+        var time = (5 * 60)/modifierTime - (TimeNow() - statusBrone.timeStampButtonHunger)/1000;
         if (time > 0){
-            renderTime(convertToTime(time*1000) , buttonTrain.x , buttonTrain.y - 40);
+            renderTime(convertToTime(time*1000) , buttonFeed.x - 25 , buttonFeed.y - 55);
         }
+
+        time = (30 * 60)/modifierTime - (TimeNow() - statusBrone.timeStampButtonTrain)/1000;
+        if (time > 0){
+            renderTime(convertToTime(time*1000) , buttonTrain.x - 25 , buttonTrain.y - 55);
+        }
+
+        time = (10)/modifierTime - (TimeNow() - statusBrone.timeStampButtonBath)/1000;
+        if (time > 0){
+            renderTime(convertToTime(time*1000) , buttonClean.x - 25 , buttonClean.y - 55);
+        }
+
+        time = (3 * 60 * 60)/modifierTime - (TimeNow() - statusBrone.timeStampButtonSleep)/1000;
+        if (time > 0){
+            renderTime(convertToTime(time*1000) , buttonSleep.x - 25 , buttonSleep.y - 55);
+        }
+
     }
 
-
-    gameLoop();
     Initialize();
+    gameLoop();
 
     canvas.addEventListener("mousedown", tap);
     canvas.addEventListener("ontouchstart", tap);

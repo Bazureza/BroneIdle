@@ -12,17 +12,18 @@ var statusBrone = new function() {
             this.timeStampBath = Date.now();
             save();
         } else {
-            stamina = value[0];
-            clean = value[1];
-            hunger = value[2];
-            agi = value[3];
-            str = value[4];
-            this.timeStampHunger = value[5];
-            this.timeStampBath  = value[6];
-            this.timeStampButtonHunger = value[7];
-            this.timeStampButtonBath = value[8];
-            this.timeStampButtonSleep = value[9];
-            this.timeStampButtonTrain = value[10];
+            this.broneAge = value[0];
+            stamina = value[1];
+            clean = value[2];
+            hunger = value[3];
+            agi = value[4];
+            str = value[5];
+            this.timeStampHunger = value[6];
+            this.timeStampBath  = value[7];
+            this.timeStampButtonHunger = value[8];
+            this.timeStampButtonBath = value[9];
+            this.timeStampButtonSleep = value[10];
+            this.timeStampButtonTrain = value[11];
         }
     }
 
@@ -50,6 +51,7 @@ var statusBrone = new function() {
 
     this.getData = function () {
         var dataJSON = [];
+        dataJSON.push(this.broneAge);
         dataJSON.push(stamina);
         dataJSON.push(clean);
         dataJSON.push(hunger);
