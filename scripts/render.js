@@ -2,7 +2,7 @@ var canvas;
 var buttonFeed, buttonFeedImage,
     buttonTrain, buttonTrainImage,
     buttonClean, buttonCleanImage,
-    buttonExtra, buttonExtraImage,
+    buttonSleep, buttonSleepImage,
     brone, broneImage,
     addition = [], additionImage, additionOpacity = [],
     barEat, barStamina, barClean, barExtra, barImage;
@@ -20,8 +20,8 @@ buttonTrainImage = new Image();
 buttonTrainImage.src = "images/button.png";
 buttonCleanImage = new Image();
 buttonCleanImage.src = "images/button.png";
-buttonExtraImage = new Image();
-buttonExtraImage.src = "images/button.png";
+buttonSleepImage = new Image();
+buttonSleepImage.src = "images/button.png";
 additionImage = new Image();
 additionImage.src = "images/plus.png";
 barImage = new Image();
@@ -156,11 +156,11 @@ buttonClean = sprite( {
     scaleY: 5,
 });
 
-buttonExtra = sprite( {
+buttonSleep = sprite( {
     context: canvas.getContext("2d"),
     w: 26,
     h: 17,
-    img: buttonExtraImage,
+    img: buttonSleepImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) + (canvas.width * (7.5/24)),
@@ -208,18 +208,6 @@ barClean = sprite({
     scaleY: 0.2,
 });
 
-barExtra = sprite({
-    context: canvas.getContext("2d"),
-    w: 2560,
-    h: 128,
-    img: barImage,
-    numberOfFrame: 1,
-    tickPerFrame: 1,
-    x: canvas.width * 18/40,
-    y: canvas.height * 10/40 + 20,
-    scaleX : 0.2,
-    scaleY: 0.2,
-});
 
 
 function createAddition(index, size){

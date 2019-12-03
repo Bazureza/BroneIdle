@@ -1,6 +1,7 @@
 ﻿(function () {
 
     var velocity = 2;
+    var modifierTime = 100;
 
     function gameLoop() {
         requestAnimationFrame(gameLoop);
@@ -14,6 +15,12 @@
         RenderGUI();
         movementObject();
         barUpdate();
+
+        decrementStatus();
+    }
+
+    function Initialize(){
+        statusBrone.Initialize();
     }
 
     function movementObject(){
@@ -33,10 +40,6 @@
         }
     }
 
-    function Initialize(){
-        statusBrone.Initialize();
-    }
-
     function RenderButton(){
         buttonFeed.update();
         buttonFeed.render();
@@ -44,8 +47,8 @@
         buttonTrain.render();
         buttonClean.update();
         buttonClean.render();
-        buttonExtra.update();
-        buttonExtra.render();
+        buttonSleep.update();
+        buttonSleep.render();
     }
 
     function RenderGUI(){
@@ -62,7 +65,7 @@
         context.font = "bold 30px Consolas";
         context.textAlign = "start";
         context.fillStyle = "green";
-        context.fillText("Eat " , canvas.width * 4/40, canvas.height * 6/40);
+        context.fillText("Hunger " , canvas.width * 4/40, canvas.height * 6/40);
         barEat.render();
 
         //clean
@@ -71,13 +74,6 @@
         context.fillStyle = "white";
         context.fillText("Clean ", canvas.width * 4/40, canvas.height * 8/40);
         barClean.render();
-
-        //educate
-        context.font = "bold 30px Consolas";
-        context.textAlign = "start";
-        context.fillStyle = "yellow";
-        context.fillText("Educate ", canvas.width * 4/40, canvas.height * 10/40);
-        barExtra.render();
 
     }
 
@@ -98,6 +94,8 @@
         checkButtonFeed(loc);
         checkButtonTrain(loc);
         checkButtonClean(loc);
+        checkButtonSleep(loc);
+
     }
 
     function getElementPosition(element) {
@@ -142,11 +140,12 @@
         //check collision tap with button
         if (distanceButton.x <= distanceMax.x && distanceButton.y <= distanceMax.y) {
 
-            statusBrone.addEat(5);
-
-            spawnAdditionSprite();
-            checkParamterStatus();
-            console.log(statusBrone.broneAge);
+            var time = (TimeNow() - statusBrone.timeStampButtonHunger)/1000;
+            if (time >= (5 * 60)/modifierTime) {
+                statusBrone.eat(10);
+                spawnAdditionSprite();
+                statusBrone.timeStampButtonHunger = TimeNow();
+            }
         }
     }
 
@@ -175,9 +174,16 @@
 
         //check collision tap with button
         if (distanceButton.x <= distanceMax.x && distanceButton.y <= distanceMax.y) {
-            console.log(statusBrone.getStamina());
-            statusBrone.addStamina(5);
-            console.log(statusBrone.getStamina());
+            var time = (TimeNow() - statusBrone.timeStampButtonTrain)/1000;
+            if (time >= (30 * 60)/modifierTime) {
+                var status = statusBrone.train();
+                if (status) {
+                    spawnAdditionSprite();
+                    statusBrone.timeStampButtonTrain = TimeNow();
+                }
+                console.log("AGI : " + statusBrone.getAgi() + "   STR : " + statusBrone.getStr());
+                checkParamterStatus();
+            }
         }
     }
 
@@ -206,9 +212,46 @@
 
         //check collision tap with button
         if (distanceButton.x <= distanceMax.x && distanceButton.y <= distanceMax.y) {
-            console.log(statusBrone.getClean());
-            statusBrone.addClean(5);
-            console.log(statusBrone.getClean());
+            var time = (TimeNow() - statusBrone.timeStampButtonBath)/1000;
+            if (time >= (10)/modifierTime) {
+                statusBrone.timeStampButtonBath = TimeNow();
+                spawnAdditionSprite();
+                statusBrone.bath(10);
+            }
+        }
+    }
+
+    function checkButtonSleep(loc){
+
+        var distanceButton, distanceMax;
+        distanceButton = distance(
+            {
+                x: (buttonSleep.x),
+                y: (buttonSleep.y)
+            }, {
+                x: loc.x,
+                y: loc.y
+            }
+        );
+
+        distanceMax = distance(
+            {
+                x: (buttonSleep.x),
+                y: (buttonSleep.y)
+            }, {
+                x: (buttonSleep.x + ((buttonSleep.getFrameWidth() / 2)* buttonSleep.scaleRatio)),
+                y: (buttonSleep.y + ((buttonSleep.getFrameHeigth() / 2)* buttonSleep.scaleRatio))
+            }
+        );
+
+        //check collision tap with button
+        if (distanceButton.x <= distanceMax.x && distanceButton.y <= distanceMax.y) {
+            var time = (TimeNow() - statusBrone.timeStampButtonSleep)/1000;
+            if (time >= (3 * 60 * 60)/modifierTime) {
+                statusBrone.timeStampButtonSleep = TimeNow();
+                spawnAdditionSprite();
+                statusBrone.sleep();
+            }
         }
     }
 
@@ -218,31 +261,6 @@
         dist.y = Math.abs(p1.y - p2.y);
 
         return dist;
-    }
-
-    function spawnAdditionSprite(){
-        var additionIndex, distanceSpawn = 40, offset, offsetSpawn, offsetSize;
-
-        offsetSpawn = Math.ceil(Math.random()*3);
-
-        for(var i = 0; i < offsetSpawn ; i++) {
-            additionIndex = addition.length;
-            offsetSize = (Math.random() * 0.2) + 0.1;
-
-            createAddition(additionIndex, offsetSize);
-            offset = (Math.random() < 0.5 ? -1 : 1) * (Math.random() * distanceSpawn);
-            console.log(offset);
-
-            addition[additionIndex].x = canvas.width / 2 + 128 - distanceSpawn + offset;
-            addition[additionIndex].y = ((3 / 5) * canvas.height) - 192  + offset + setOffsetYAdditionSprite();
-        }
-    }
-
-    function setOffsetYAdditionSprite(){
-        if (statusBrone.broneAge == 0) return 192 * 3/4;
-        else if (statusBrone.broneAge == 1) return 192 * 2/4;
-        else if (statusBrone.broneAge == 2) return (192 * 1/4) ;
-        else return -192 * 1/4;
     }
 
     function destroyAdditionSprite(index) {

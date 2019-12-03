@@ -4,18 +4,12 @@ function checkParamterStatus(){
 
 function growUp(){
     if (statusBrone.broneAge == 3) return;
-    if (statusBrone.getEat() == 100) {
-        statusBrone.requirementGrow++;
-    }
 
-    if (statusBrone.requirementGrow == 5 && statusBrone.broneAge == 0) {
-        statusBrone.requirementGrow = 0;
+    if (statusBrone.getAgi() >= 5 && statusBrone.getStr() >= 5 && statusBrone.broneAge == 0) {
         statusBrone.broneAge = 1;
-    } else if (statusBrone.requirementGrow == 10 && statusBrone.broneAge == 1) {
-        statusBrone.requirementGrow = 0;
+    } else if (statusBrone.getAgi() >= 20 && statusBrone.getStr() >= 20 && statusBrone.broneAge == 1) {
         statusBrone.broneAge = 2;
-    } else if (statusBrone.requirementGrow == 25 && statusBrone.broneAge == 2) {
-        statusBrone.requirementGrow = 0;
+    } else if (statusBrone.getAgi() >= 50 && statusBrone.getStr() >= 50 && statusBrone.broneAge == 2) {
         statusBrone.broneAge = 3;
     }
     brone.changeFrame(statusBrone.broneAge, 0);
@@ -32,25 +26,30 @@ function barUpdate(){
 
     indexBar = Math.floor(statusBrone.getClean() / 10);
     barClean.changeFrame(0, indexBar);
-
-    indexBar = Math.floor(statusBrone.getEducate() / 10);
-    barExtra.changeFrame(0, indexBar);
 }
 
-var fs = require("fs");
-var sampleObject = {
-    a: 1,
-    b: 2,
-    c: {
-        x: 11,
-        y: 22
-    }
-};
 
-fs.writeFile("./object.json", JSON.stringify(sampleObject), (err) => {
-    if (err) {
-        console.error(err);
-        return;
-    };
-    console.log("File has been created");
-});
+function TimeNow(){
+    return Date.now();
+}
+
+function decrementEat(){
+    var time = (TimeNow() - statusBrone.timeStampHunger)/1000;
+    if ( time >= 10*60) {
+        statusBrone.timeStampHunger = TimeNow();
+        statusBrone.eat(-statusBrone.modifierHunger * (2**statusBrone.broneAge));
+    }
+}
+
+function decreamentBath(){
+    var time = (TimeNow() - statusBrone.timeStampBath)/1000;
+    if ( time >= 10*60) {
+        statusBrone.timeStampBath = TimeNow();
+        statusBrone.bath(-statusBrone.modifierBath);
+    }
+}
+
+function decrementStatus(){
+    decrementEat();
+    decreamentBath();
+}
