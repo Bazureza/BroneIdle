@@ -11,6 +11,7 @@
 
         RenderButton();
         RenderGUI();
+        renderImageStatus();
         movementObject();
         barUpdate();
 
@@ -69,6 +70,21 @@
         //clean
         bathIcon.render();
         barClean.render();
+
+    }
+
+    function renderImageStatus() {
+        if(statusBrone.getStamina() < 50) {
+            tiredStatus.render();
+        }
+
+        if(statusBrone.getEat() < 50) {
+            hungerStatus.render();
+        }
+
+        if(statusBrone.getClean() < 50) {
+            dirtyStatus.render();
+        }
 
     }
 
