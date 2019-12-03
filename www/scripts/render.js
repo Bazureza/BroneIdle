@@ -3,6 +3,9 @@ var buttonFeed, buttonFeedImage,
     buttonTrain, buttonTrainImage,
     buttonClean, buttonCleanImage,
     buttonSleep, buttonSleepImage,
+    tiredStatus, tiredStatusImage,
+    hungerStatus, hungerStatusImage,
+    dirtyStatus, dirtyStatusImage,
     brone, broneImage,
     addition = [], additionImage, additionOpacity = [],
     barEat, barStamina, barClean, barExtra, barImage;
@@ -26,6 +29,12 @@ additionImage = new Image();
 additionImage.src = "images/plus.png";
 barImage = new Image();
 barImage.src = "images/bar.png";
+tiredStatusImage = new Image();
+tiredStatusImage.src = "images/button.png";
+hungerStatusImage = new Image();
+hungerStatusImage.src = "images/button.png";
+dirtyStatusImage = new Image();
+dirtyStatusImage.src = "images/button.png";
 
 
 function sprite(options) {
@@ -165,6 +174,45 @@ buttonSleep = sprite( {
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) + (canvas.width * (7.5/24)),
     y: (18/20) * canvas.height,
+    scaleX : 5,
+    scaleY: 5,
+});
+
+tiredStatus = sprite( {
+    context: canvas.getContext("2d"),
+    w: 26,
+    h: 17,
+    img: tiredStatusImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: (canvas.width * (12/24)) - (canvas.width * (5/24)),
+    y: (canvas.height * (10/20)) - (canvas.height * (2/20)),
+    scaleX : 5,
+    scaleY: 5,
+});
+
+hungerStatus = sprite( {
+    context: canvas.getContext("2d"),
+    w: 26,
+    h: 17,
+    img: hungerStatusImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: (canvas.width * (12/24)) + (canvas.width * (5/24)),
+    y: (canvas.height * (10/20)) - (canvas.height * (2/20)),
+    scaleX : 5,
+    scaleY: 5,
+});
+
+dirtyStatus = sprite( {
+    context: canvas.getContext("2d"),
+    w: 26,
+    h: 17,
+    img: dirtyStatusImage,
+    numberOfFrame: 1,
+    tickPerFrame: 1,
+    x: (canvas.width * (12/24)) - (canvas.width * (5/24)),
+    y: (canvas.height * (10/20)) + (canvas.height * (2/20)),
     scaleX : 5,
     scaleY: 5,
 });

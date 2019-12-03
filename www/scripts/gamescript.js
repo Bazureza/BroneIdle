@@ -83,6 +83,8 @@
 
     }
 
+
+
     // Input Detect //
     function tap(e) {
         var i,
