@@ -12,7 +12,7 @@ function spawnAdditionSprite(){
         console.log(offset);
 
         addition[additionIndex].x = canvas.width / 2 + 128 - distanceSpawn + offset;
-        addition[additionIndex].y = (1/2 * canvas.height) - 192  + offset + setOffsetYAdditionSprite();
+        addition[additionIndex].y = (1/2 * canvas.height) + 40 - 192  + offset + setOffsetYAdditionSprite();
     }
 }
 
@@ -23,8 +23,16 @@ function setOffsetYAdditionSprite(){
     else return -192 * 1/4;
 }
 
-function spawnGreetings(){
-
+function animateBrone(){
+    if (statusBrone.broneAge == 0) {
+        brone.update();
+        brone.tickPerFrame = 4.5;
+        brone.numberOfFrame = 6;
+    } else {
+        brone.tickPerFrame = 1;
+        brone.numberOfFrame = 1;
+    }
+    brone.render();
 }
 
 function destroyAdditionSprite(index) {

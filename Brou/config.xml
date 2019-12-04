@@ -2,11 +2,18 @@
 <widget id="com.ppk.brou" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Brou</name>
     <description>
-        A blank PhoneGap app.
+        A PPK Team
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+        Persero Team
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <icon src="images/icon.png" platform="android" qualifier="ldpi" />
+    <icon src="images/icon.png" platform="android" qualifier="mdpi" />
+    <icon src="images/icon.png" platform="android" qualifier="hdpi" />
+    <icon src="images/icon.png" platform="android" qualifier="xhdpi" />
+    <icon src="images/icon.png" platform="android" qualifier="xxhdpi" />
+    <icon src="images/icon.png" platform="android" qualifier="xxxhdpi" />
+    <icon src="images/icon.png" platform="android" qualifier="fr-xxhdpi" />
 </widget>

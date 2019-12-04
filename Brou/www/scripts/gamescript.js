@@ -1,13 +1,12 @@
 ﻿(function () {
 
     var velocity = 2;
-    var modifierTime = 100;
+    var modifierTime = 1;
 
     function gameLoop() {
         canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
 
-        //brone.update();
-        brone.render();
+        animateBrone();
 
         RenderButton();
         RenderGUI();
@@ -24,7 +23,8 @@
     function Initialize(){
         var JSONData = JSON.parse(load());
         statusBrone.Initialize(JSONData);
-        brone.changeFrame(statusBrone.broneAge, 0);
+        if (statusBrone.broneAge > 0) brone.changeFrame(statusBrone.broneAge + 5, 0);
+        else brone.changeFrame(statusBrone.broneAge, 0);
     }
 
     function movementObject(){
@@ -75,17 +75,25 @@
 
     function renderImageStatus() {
         if(statusBrone.getStamina() < 50) {
+            tiredStatus.y = (canvas.height * (10/20)) - (canvas.height * (2/20)) + offsetStatusImage();
             tiredStatus.render();
         }
 
         if(statusBrone.getEat() < 50) {
+            hungerStatus.y = (canvas.height * (10/20)) - (canvas.height * (2/20)) + offsetStatusImage();
             hungerStatus.render();
         }
 
         if(statusBrone.getClean() < 50) {
             dirtyStatus.render();
         }
+    }
 
+    function offsetStatusImage(){
+        if (statusBrone.broneAge == 0) return 192 * 3/4;
+        else if (statusBrone.broneAge == 1) return 192 * 1/4;
+        else if (statusBrone.broneAge == 2) return (0) ;
+        else return -90;
     }
 
     // Input Detect //

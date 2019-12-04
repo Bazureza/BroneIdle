@@ -1,3 +1,5 @@
+var modifierTime = 1;
+
 function checkParamterStatus(){
     growUp();
 }
@@ -15,7 +17,8 @@ function growUp(){
         PlayGrowSFX();
         statusBrone.broneAge = 3;
     }
-    brone.changeFrame(statusBrone.broneAge, 0);
+    if (statusBrone.broneAge > 0) brone.changeFrame(statusBrone.broneAge + 5, 0);
+    else brone.changeFrame(statusBrone.broneAge, 0);
 }
 
 function barUpdate(){
@@ -38,8 +41,8 @@ function TimeNow(){
 
 function decrementEat(){
     var time = (TimeNow() - statusBrone.timeStampHunger)/1000;
-    var multiply = Math.floor(time/(10*60));
-    if ( time >= 10*60) {
+    var multiply = Math.floor(time/(10*60/modifierTime));
+    if ( time >= 10*60 / modifierTime) {
         statusBrone.timeStampHunger = TimeNow();
         statusBrone.eat( (-statusBrone.modifierHunger * (2**statusBrone.broneAge)) * multiply );
     }
@@ -47,8 +50,8 @@ function decrementEat(){
 
 function decreamentBath(){
     var time = (TimeNow() - statusBrone.timeStampBath)/1000;
-    var multiply = Math.floor(time/(3*60));
-    if ( time >= 3*60) {
+    var multiply = Math.floor(time/(3*60/modifierTime));
+    if ( time >= 3*60 / modifierTime) {
         statusBrone.timeStampBath = TimeNow();
         statusBrone.bath(-statusBrone.modifierBath * multiply);
     }

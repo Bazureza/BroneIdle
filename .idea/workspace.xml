@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="238f16ec-4d50-4721-b236-14f34d5bf805" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Brou/www/scripts/soundManagement.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Brou/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Brou/www/media/gameover.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Brou/www/media/gracetheroof.mp3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Brou/www/media/punch.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/css/gamestyle.css" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/css/gamestyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/images/background/BG.png" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/images/background/BG.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/images/background/images.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/images/brone.png" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/images/brone.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/images/butan1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/images/butan1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/images/buttonBath.png" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/images/buttonBath.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/images/buttonFeed.png" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/images/buttonFeed.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/images/buttonSleep.png" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/images/buttonSleep.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/images/buttonTrain.png" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/images/buttonTrain.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Brou/www/scripts/animation.js" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/scripts/animation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Brou/www/scripts/gamelogic.js" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/scripts/gamelogic.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Brou/www/scripts/gamescript.js" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/scripts/gamescript.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Brou/www/scripts/render.js" beforeDir="false" afterPath="$PROJECT_DIR$/Brou/www/scripts/render.js" afterDir="false" />
@@ -22,8 +29,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Brou/www/scripts/animation.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="31" lean-forward="true" selection-start-column="31" selection-end-column="31" />
+            <state relative-caret-position="476">
+              <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -31,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Brou/www/scripts/gamelogic.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+            <state relative-caret-position="323">
+              <caret line="19" column="76" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -45,7 +52,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Brou/www/scripts/gamedata.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2125">
+            <state relative-caret-position="1411">
               <caret line="125" column="18" selection-start-line="125" selection-start-column="18" selection-end-line="125" selection-end-column="18" />
             </state>
           </provider>
@@ -63,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Brou/www/scripts/gamescript.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+            <state relative-caret-position="808">
+              <caret line="95" column="23" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -72,8 +79,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Brou/www/scripts/render.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="212" column="24" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="24" />
+            <state relative-caret-position="62">
+              <caret line="196" column="59" selection-start-line="196" selection-start-column="7" selection-end-line="196" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Brou/config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Brou/www/css/gamestyle.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
             </state>
           </provider>
         </entry>
@@ -128,17 +153,20 @@
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/scripts/gamescript.js" />
         <option value="$PROJECT_DIR$/www/scripts/gamelogic.js" />
-        <option value="$PROJECT_DIR$/Brou/www/scripts/gamelogic.js" />
         <option value="$PROJECT_DIR$/Brou/www/index.html" />
         <option value="$PROJECT_DIR$/Brou/www/scripts/soundManagement.js" />
+        <option value="$PROJECT_DIR$/Brou/www/css/gamestyle.css" />
+        <option value="$PROJECT_DIR$/Brou/config.xml" />
         <option value="$PROJECT_DIR$/Brou/www/scripts/render.js" />
+        <option value="$PROJECT_DIR$/Brou/www/scripts/animation.js" />
         <option value="$PROJECT_DIR$/Brou/www/scripts/gamescript.js" />
+        <option value="$PROJECT_DIR$/Brou/www/scripts/gamelogic.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
-    <option name="y" value="198" />
+    <option name="y" value="4" />
     <option name="width" value="1320" />
     <option name="height" value="733" />
   </component>
@@ -166,6 +194,13 @@
               <item name="BroneIdle" type="462c0819:PsiDirectoryNode" />
               <item name="Brou" type="462c0819:PsiDirectoryNode" />
               <item name="www" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="BroneIdle" type="b2602c69:ProjectViewProjectNode" />
+              <item name="BroneIdle" type="462c0819:PsiDirectoryNode" />
+              <item name="Brou" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="BroneIdle" type="b2602c69:ProjectViewProjectNode" />
@@ -220,18 +255,18 @@
       <workItem from="1575295068771" duration="8164000" />
       <workItem from="1575307447416" duration="20330000" />
       <workItem from="1575341230456" duration="7045000" />
-      <workItem from="1575387528743" duration="9520000" />
+      <workItem from="1575387528743" duration="17361000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26467000" />
+    <option name="totallyTimeSpent" value="34308000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1320" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.2579365" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2579365" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -387,9 +422,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Brou/www/scripts/fps-counter.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../PhoneGap/Zombie/www/scripts/gamescript.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="183">
@@ -404,6 +436,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Brou/www/css/gamestyle.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="54" selection-start-line="6" selection-start-column="54" selection-end-line="6" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Brou/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="30" selection-start-line="17" selection-start-column="30" selection-end-line="17" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Brou/www/scripts/gamedata.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="125" column="18" selection-start-line="125" selection-start-column="18" selection-end-line="125" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Brou/www/scripts/soundManagement.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -411,38 +464,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Brou/www/scripts/animation.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="31" lean-forward="true" selection-start-column="31" selection-end-column="31" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Brou/www/scripts/fps-counter.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Brou/www/scripts/render.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="376">
-          <caret line="212" column="24" selection-start-line="212" selection-start-column="24" selection-end-line="212" selection-end-column="24" />
+        <state relative-caret-position="62">
+          <caret line="196" column="59" selection-start-line="196" selection-start-column="7" selection-end-line="196" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Brou/www/scripts/gamedata.js">
+    <entry file="file://$PROJECT_DIR$/Brou/www/scripts/animation.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2125">
-          <caret line="125" column="18" selection-start-line="125" selection-start-column="18" selection-end-line="125" selection-end-column="18" />
+        <state relative-caret-position="476">
+          <caret line="28" column="32" selection-start-line="28" selection-start-column="32" selection-end-line="28" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Brou/www/scripts/gamescript.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        <state relative-caret-position="808">
+          <caret line="95" column="23" selection-start-line="95" selection-start-column="23" selection-end-line="95" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Brou/www/scripts/gamelogic.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="56" column="9" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+        <state relative-caret-position="323">
+          <caret line="19" column="76" selection-start-line="19" selection-start-column="76" selection-end-line="19" selection-end-column="76" />
         </state>
       </provider>
     </entry>

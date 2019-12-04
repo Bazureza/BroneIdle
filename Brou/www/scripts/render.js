@@ -39,19 +39,19 @@ trainIconImage.src = "images/train.png";
 bathIconImage = new Image();
 bathIconImage.src = "images/bath.png";
 tiredStatusImage = new Image();
-tiredStatusImage.src = "images/button.png";
+tiredStatusImage.src = "images/status_sleep.png";
 hungerStatusImage = new Image();
-hungerStatusImage.src = "images/button.png";
+hungerStatusImage.src = "images/status_hungry.png";
 dirtyStatusImage = new Image();
-dirtyStatusImage.src = "images/button.png";
+dirtyStatusImage.src = "images/status_poop.png";
 
 function sprite(options) {
     var that = {},
         frameIndexX = 0,
         frameIndexY = 0,
-        tickCount = 0,
-        tickPerFrame = options.tickPerFrame || 0,
-        numberOfFrame = options.numberOfFrame || 1;
+        tickCount = 0;
+    that.tickPerFrame = options.tickPerFrame || 0;
+    that.numberOfFrame = options.numberOfFrame || 1;
 
     that.context = options.context;
     that.w = options.w;
@@ -70,10 +70,10 @@ function sprite(options) {
     that.update = function () {
         tickCount += 1;
 
-        if (tickCount > tickPerFrame) {
+        if (tickCount > that.tickPerFrame) {
             tickCount = 0;
 
-            if (frameIndexX < numberOfFrame - 1) {
+            if (frameIndexX < that.numberOfFrame - 1) {
                 frameIndexX += 1;
             } else {
                 frameIndexX = 0;
@@ -86,13 +86,13 @@ function sprite(options) {
     that.render = function () {
         that.context.drawImage(
             that.img,
-            frameIndexX * that.w / numberOfFrame,
-            frameIndexY * that.h / numberOfFrame,
-            that.w / numberOfFrame,
+            frameIndexX * that.w,
+            frameIndexY * that.h,
+            that.w,
             that.h,
             that.x - (that.offsetX * that.scaleX),
             that.y - (that.offsetY * that.scaleY),
-            (that.w / numberOfFrame) * that.scaleX,
+            (that.w) * that.scaleX,
             that.h * that.scaleY,
         );
     };
@@ -110,7 +110,7 @@ function sprite(options) {
     }
 
     that.getFrameWidth = function () {
-        return that.w / numberOfFrame;
+        return that.w;
     }
 
     that.getFrameHeigth = function () {
@@ -129,100 +129,100 @@ brone = sprite({
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: canvas.width/2,
-    y: (2/4) * canvas.height,
+    y: (2/4) * canvas.height + 40,
     scaleX : 1,
     scaleY : 1,
 });
 
 buttonFeed = sprite( {
     context: canvas.getContext("2d"),
-    w: 512,
-    h: 256,
+    w: 64,
+    h: 48,
     img: buttonFeedImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) - (canvas.width * (7.5/24)),
     y: (18/20) * canvas.height,
-    scaleX : 0.3,
-    scaleY: 0.3,
+    scaleX : 2,
+    scaleY: 2,
 });
 
 buttonTrain = sprite( {
     context: canvas.getContext("2d"),
-    w: 512,
-    h: 256,
+    w: 64,
+    h: 48,
     img: buttonTrainImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) - (canvas.width * (2.5/24)),
     y: (18/20) * canvas.height,
-    scaleX : 0.3,
-    scaleY: 0.3,
+    scaleX : 2,
+    scaleY: 2,
 });
 
 buttonClean = sprite( {
     context: canvas.getContext("2d"),
-    w: 512,
-    h: 256,
+    w: 64,
+    h: 48,
     img: buttonCleanImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) + (canvas.width * (2.5/24)),
     y: (18/20) * canvas.height,
-    scaleX : 0.3,
-    scaleY: 0.3,
+    scaleX : 2,
+    scaleY: 2,
 });
 
 buttonSleep = sprite( {
     context: canvas.getContext("2d"),
-    w: 512,
-    h: 256,
+    w: 64,
+    h: 48,
     img: buttonSleepImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) + (canvas.width * (7.5/24)),
     y: (18/20) * canvas.height,
-    scaleX : 0.3,
-    scaleY: 0.3,
+    scaleX : 2,
+    scaleY: 2,
 });
 
 tiredStatus = sprite( {
     context: canvas.getContext("2d"),
-    w: 26,
-    h: 17,
+    w: 256,
+    h: 256,
     img: tiredStatusImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) - (canvas.width * (5/24)),
     y: (canvas.height * (10/20)) - (canvas.height * (2/20)),
-    scaleX : 5,
-    scaleY: 5,
+    scaleX : 0.5,
+    scaleY: 0.5,
 });
 
 hungerStatus = sprite( {
     context: canvas.getContext("2d"),
-    w: 26,
-    h: 17,
+    w: 256,
+    h: 256,
     img: hungerStatusImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
     x: (canvas.width * (12/24)) + (canvas.width * (5/24)),
     y: (canvas.height * (10/20)) - (canvas.height * (2/20)),
-    scaleX : 5,
-    scaleY: 5,
+    scaleX : 0.5,
+    scaleY: 0.5,
 });
 
 dirtyStatus = sprite( {
     context: canvas.getContext("2d"),
-    w: 26,
-    h: 17,
+    w: 256,
+    h: 256,
     img: dirtyStatusImage,
     numberOfFrame: 1,
     tickPerFrame: 1,
-    x: (canvas.width * (12/24)) - (canvas.width * (5/24)),
-    y: (canvas.height * (10/20)) + (canvas.height * (2/20)),
-    scaleX : 5,
-    scaleY: 5,
+    x: (canvas.width * (12/24)) - 20 - (canvas.width * (5/24)),
+    y: (canvas.height * (10/20)) + (canvas.height * (2/20)+20),
+    scaleX : 0.5,
+    scaleY: 0.5,
 });
 
 barStamina = sprite({
