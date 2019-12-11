@@ -1,5 +1,5 @@
 # BroneIdle
-Brone Idle Game
+Brone Idle Game, Game POU dengan patform hybrid mobile html
 
 Project <b>Pemrogramman Perangkat Khusus</b> FILKOM UB Kelas - F 
 <br>
